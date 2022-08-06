@@ -2,6 +2,7 @@ package com.example.shop.config;
 
 import com.example.shop.models.Permission;
 import com.example.shop.models.Role;
+import com.example.shop.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +23,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringConfig extends WebSecurityConfigurerAdapter {
-
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SpringConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
+    public SpringConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService){
         this.userDetailsService = userDetailsService;
     }
 
@@ -35,7 +35,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/registration").permitAll()
                 .antMatchers(HttpMethod.POST, "/products/**").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
                 .antMatchers(HttpMethod.GET, "/products/**").hasAuthority(Permission.DEVELOPERS_READ.getPermission())
                 .and()
