@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>catalog</title>
+</head>
+<body>
+<p>все товары</p>
+<form method="POST" th:action="@{/product/buy/{id}}">
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getPrice()}"></td>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td> <img th:src="${product.getPhoto()}" alt="zara photo" width="130" height="200"/></td>
+            <td><button type="submit">купить</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

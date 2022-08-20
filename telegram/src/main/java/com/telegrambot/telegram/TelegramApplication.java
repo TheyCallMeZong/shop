@@ -1,11 +1,13 @@
-package com.example.shop;
+package com.telegrambot.telegram;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShopApplication {
+public class TelegramApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(ShopApplication.class, args);
+        SpringApplication.run(TelegramApplication.class, args);
     }
+
 }

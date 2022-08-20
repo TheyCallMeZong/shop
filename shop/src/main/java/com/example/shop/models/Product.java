@@ -19,4 +19,6 @@ public class Product {
     private String description;
 
     private String color;
+
+    private String photo;
 }
